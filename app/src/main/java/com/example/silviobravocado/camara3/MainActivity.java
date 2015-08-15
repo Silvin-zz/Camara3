@@ -117,11 +117,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if(requestCode == TAKE_PICTURE) {
             if (this.typeAction == 1 && resultCode == RESULT_OK && intent!=null) { // Tomo una foto
                 this.showPicture(intent);
-                this.sendNotification();
+                this.sendNotification("Take Picture", "Hola, acabas de tomar una foto  y fue guardada en el dispositivo");
             } else{                                                                 // Cargo una imagen
                 if(resultCode == Activity.RESULT_OK){
                     this.loadPhoto(intent);
-                    this.sendNotification();
+                    this.sendNotification("Load Picture", "Hola, acabas de cargar una foto que tienes en tu galería");
                 }
             }
         }
@@ -158,15 +158,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
 
-    private void sendNotification(){
+    private void sendNotification(String title, String description){
 
 
         Uri notificationSound  = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         Builder builder = new Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Envio de notificaion")
-                .setContentText("Descripcion")
+                .setContentTitle(title)
+                .setContentText(description)
                 .setSound(notificationSound);
 
 
